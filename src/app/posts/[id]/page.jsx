@@ -1,5 +1,19 @@
-import { dynamicPost } from '@/services/getApi';
+import { dynamicPost, getPosts } from '@/services/getApi';
 import React from 'react';
+
+// export const metadata = {
+//     title: 'Post Details',
+//     description: 'Post Details Page'
+// }
+
+export const generateMetadata = async ({params}) => {
+    const postData = await dynamicPost(params.id);
+
+    return {
+        title: `Post Details of ${params.id}`,
+        description: postData.body
+    }
+}
 
 const PostDetailsPage = async ({ params }) => {
 
